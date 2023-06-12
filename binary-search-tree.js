@@ -98,28 +98,61 @@ class BinarySearchTree {
    * Return an array of visited nodes. */
 
   dfsPreOrder() {
-
+    const nodes = [];
+    function visitNodes(node) {
+      if (!node) return;
+      nodes.push(node.val);
+      visitNodes(node.left);
+      visitNodes(node.right);
+    }
+    visitNodes(this.root);
+    return nodes;
   }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
   dfsInOrder() {
-
+    const nodes = [];
+    function visitNodes(node) {
+      if (!node) return;
+      visitNodes(node.left);
+      nodes.push(node.val);
+      visitNodes(node.right);
+    }
+    visitNodes(this.root);
+    return nodes;
   }
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
 
   dfsPostOrder() {
-
+    const nodes = [];
+    function visitNodes(node) {
+      if (!node) return;
+      visitNodes(node.left);
+      visitNodes(node.right);
+      nodes.push(node.val);
+    }
+    visitNodes(this.root);
+    return nodes;
   }
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
   bfs() {
-
+    if (!this.root) return [];
+    const toVisit = [this.root];
+    const nodeVals = [];
+    while (toVisit.length) {
+      const current = toVisit.shift();
+      nodeVals.push(current.val);
+      if (current.left) toVisit.push(current.left);
+      if (current.right) toVisit.push(current.right);
+    }
+    return nodeVals;
   }
 
   /** Further Study!
